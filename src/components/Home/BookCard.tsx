@@ -1,8 +1,10 @@
+"use client"
 import { motion } from "framer-motion";
 import { BookOpen, Heart } from "lucide-react";
-import StarRating from "./StarRating";
+import StarRating from "../../app/layout/StarRating";
 import type { BookReview } from "@/data/books";
-import bookPlaceholder from "@/assets/book-placeholder.jpg";
+import bookPlaceholder from "../../assets/book-placehoder.jpg";
+import Image from "next/image";
 
 interface BookCardProps {
   book: BookReview;
@@ -21,7 +23,7 @@ const BookCard = ({ book, index, onSelect }: BookCardProps) => {
     >
       <div className="flex gap-5">
         <div className="w-24 shrink-0 overflow-hidden rounded-md">
-          <img
+          <Image
             src={book.coverUrl || bookPlaceholder}
             alt={`Cover of ${book.title}`}
             className="h-36 w-full object-cover transition-transform duration-300 group-hover:scale-105"

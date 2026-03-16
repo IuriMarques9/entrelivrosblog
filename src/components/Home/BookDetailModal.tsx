@@ -1,8 +1,10 @@
+"use client"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Heart, BookOpen } from "lucide-react";
-import StarRating from "./StarRating";
+import StarRating from "../../app/layout/StarRating";
 import type { BookReview } from "@/data/books";
-import bookPlaceholder from "@/assets/book-placeholder.jpg";
+
+const bookPlaceholder = "https://via.placeholder.com/150x200?text=Book";
 
 interface BookDetailModalProps {
   book: BookReview | null;
@@ -51,7 +53,7 @@ const BookDetailModal = ({ book, open, onOpenChange }: BookDetailModalProps) => 
               <span className="font-display text-sm font-semibold">My Review</span>
             </div>
             <p className="mt-2 font-body text-sm leading-relaxed text-foreground/90">
-              {book.fullReview}
+              
             </p>
           </div>
         </div>

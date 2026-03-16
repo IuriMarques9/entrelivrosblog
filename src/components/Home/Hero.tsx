@@ -1,12 +1,15 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { BookOpen } from "lucide-react";
 import heroImage from "@/assets/hero-books.jpg";
+import Image from "next/image";
 
-const HeroSection = () => {
+const Hero = () => {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
-        <img
+        <Image
           src={heroImage}
           alt="Books and coffee on a wooden table"
           className="h-full w-full object-cover"
@@ -35,4 +38,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default Hero;
