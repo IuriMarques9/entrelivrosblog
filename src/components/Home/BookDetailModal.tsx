@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Heart, BookOpen } from "lucide-react";
 import StarRating from "../../app/layout/StarRating";
-import type { BookReview } from "@/data/books";
+import type { BookReview } from "@/interface/book";
 import bookPlaceholder from "../../assets/book-placehoder.jpg";
 import Image from "next/image";
 

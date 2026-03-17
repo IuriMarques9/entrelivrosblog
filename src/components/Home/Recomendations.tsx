@@ -1,27 +1,24 @@
 "use client";
 import { BookOpen, Heart } from "lucide-react";
 import BookCard from "../Home/BookCard";
-import { bookReviews, type BookReview } from "@/data/books";
+import { BookReview } from "@/interface/book";
 import { useState } from "react";
 import BookDetailModal from "./BookDetailModal";
 
-const genres = ["Todos", ...Array.from(new Set(bookReviews.map((b) => b.genre)))];
 
-const Recomendations = () => {
-  const [selectedBook, setSelectedBook] = useState<BookReview | null>(null);
-  const [activeGenre, setActiveGenre] = useState("Todos");
+const Recomendations = ({ livros, categories }: { livros: BookReview[]; categories: string[] }) => {
+  
+    const [selectedBook, setSelectedBook] = useState<BookReview | null>(null);
+    const [activeGenre, setActiveGenre] = useState("Todos");
 
-
-  const filtered =
-    activeGenre === "Todos"
-      ? bookReviews
-      : bookReviews.filter((b) => b.genre === activeGenre);
+    const filtered = activeGenre === "Todos" ? livros : livros.filter((b) => b.genre === activeGenre);
 
     return (
         <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+            
             {/* Genre filter */}
             <div className="mb-8 flex flex-wrap items-center gap-2">
-            {genres.map((genre) => (
+            {categories.map((genre) => (
                 <button
                 key={genre}
                 onClick={() => setActiveGenre(genre)}
@@ -40,12 +37,12 @@ const Recomendations = () => {
             <div className="mb-8 flex items-center gap-6 border-b border-border pb-6">
             <div className="flex items-center gap-2 text-muted-foreground">
                 <BookOpen className="h-4 w-4" />
-                <span className="font-body text-sm">{bookReviews.length} books reviewed</span>
+                <span className="font-body text-sm">{livros.length} books reviewed</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
                 <Heart className="h-4 w-4 fill-primary text-primary" />
                 <span className="font-body text-sm">
-                {bookReviews.filter((b) => b.recommendation).length} recommended
+                {livros.filter((b) => b.recommendation).length} recommended
                 </span>
             </div>
             </div>

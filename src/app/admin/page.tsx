@@ -1,10 +1,9 @@
-import Hero from "@/components/Home/Hero";
-import Recomendations from "@/components/Home/Recomendations";
 import Footer from "@/app/layout/Footer";
-import Navbar from "./layout/NavBar";
+import Navbar from "../layout/NavBar";
 import { createClient } from '@/lib/supabase/server'
 import { cookies } from 'next/headers'
 import { BookReview } from "@/interface/book";
+import Table from "@/components/Admin/Table";
 
 
 const cookieStore = await cookies()
@@ -21,25 +20,17 @@ async function getBooks() : Promise<BookReview[]> {
 }
 
 
-const Home = async () => {
+export default async function AdminPage() {
 
-  const livros = await getBooks()
-  const categories = ['Todos', ...new Set(livros.map((livro) => livro.genre))]
+  const tabela = await getBooks();
 
   return (
     <div className="min-h-screen bg-background">
         <Navbar />
-
-        <Hero />
-
-        <Recomendations livros={livros} categories={categories}/>
       
-
+        <Table tabela={tabela} />
+        
         <Footer />
-
-      
     </div>
   );
 };
-
-export default Home;

@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { BookOpen, Heart } from "lucide-react";
 import StarRating from "../../app/layout/StarRating";
-import type { BookReview } from "@/data/books";
+import type { BookReview } from "@/interface/book";
 import bookPlaceholder from "../../assets/book-placehoder.jpg";
 import Image from "next/image";
 

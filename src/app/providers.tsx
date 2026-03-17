@@ -14,7 +14,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {children}
+          {children}
       </TooltipProvider>
     </QueryClientProvider>
   );
