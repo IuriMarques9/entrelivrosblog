@@ -5,8 +5,9 @@ export interface BookReview {
   author: string
   rating: number
   genre: string
-  reviewDate: Date
+  reviewDate: string
   shortReview: string
   fullReview: string
   recommendation: boolean
+  coverUrl?: string
 }

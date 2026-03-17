@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import type { BookReview } from "@/interface/book";
 import { addBook, updateBook, deleteBook } from '@/app/admin/actions'
+import BookFormModal from "./BookFormModal";
 
 
 const Dashboard = ( { tabela }: { tabela: BookReview[] } ) => {
@@ -76,7 +77,7 @@ const Dashboard = ( { tabela }: { tabela: BookReview[] } ) => {
                 Gere as tuas resenhas de livros
               </p>
             </div>
-            <Button className="gap-2">
+            <Button onClick={handleAdd} className="gap-2">
               <Plus className="h-4 w-4" />
               Novo Livro
             </Button>
@@ -116,6 +117,7 @@ const Dashboard = ( { tabela }: { tabela: BookReview[] } ) => {
                         <Button
                           variant="ghost"
                           size="icon"
+                          onClick={() => handleEdit(book)}
                         >
                           <Pencil className="h-4 w-4" />
                         </Button>
@@ -144,6 +146,13 @@ const Dashboard = ( { tabela }: { tabela: BookReview[] } ) => {
         </motion.div>
       </main>
 
+      <BookFormModal
+        key={editingBook?.id ?? 'new'}
+        open={formOpen}
+        onOpenChange={setFormOpen}
+        book={editingBook}
+        onSubmit={handleSubmit}
+      />    
       
       <AlertDialog open={!!deleteTarget} onOpenChange={(o) => !o && setDeleteTarget(null)}>
         <AlertDialogContent>

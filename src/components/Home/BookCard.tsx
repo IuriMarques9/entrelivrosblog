@@ -46,10 +46,10 @@ const BookCard = ({ book, index, onSelect }: BookCardProps) => {
               by {book.author}
             </p>
           </div>
-          <div className="mt-3 flex items-center justify-between">
+          <div className="mt-3 flex items-center gap-1.5">
             <StarRating rating={book.rating} />
             <span className="font-body text-xs text-muted-foreground">
-              {book.reviewDate}
+              {book?.reviewDate ? new Date(book.reviewDate).toLocaleDateString('pt-PT') : new Date().toLocaleDateString('pt-PT')}
             </span>
           </div>
         </div>

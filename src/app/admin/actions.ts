@@ -4,15 +4,15 @@ import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import type { BookReview } from '@/interface/book'
 
-export async function addBook(data: Omit<BookReview, 'id'>) {
+export async function addBook(data: Omit<BookReview, 'id' | 'reviewDate'>) {
   const supabase = await createClient()
-
+  
   const { error } = await supabase
     .from('BookReview')
     .insert(data)
 
   if (error) return { error: error.message }
-
+ 
   revalidatePath('/admin')
   revalidatePath('/')
 }

@@ -45,7 +45,7 @@ const BookDetailModal = ({ book, open, onOpenChange }: BookDetailModalProps) => 
               )}
             </div>
             <p className="mt-1 font-body text-xs text-muted-foreground">
-              Reviewed {book.reviewDate}
+              Reviewed {book?.reviewDate ? new Date(book.reviewDate).toLocaleDateString('pt-PT') : new Date().toLocaleDateString('pt-PT')}
             </p>
             <div className="mt-4 flex items-center gap-1.5 text-primary">
               <BookOpen className="h-4 w-4" />
