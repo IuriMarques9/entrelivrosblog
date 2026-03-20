@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen } from "lucide-react";
-import heroImage from "@/assets/hero-books.jpg";
+import heroImage from "../../../public/hero-books.jpg";
+import logo from "../../../public/logo-horizontal.png";
 import Image from "next/image";
 
 const Hero = () => {
@@ -11,7 +11,7 @@ const Hero = () => {
       <div className="absolute inset-0">
         <Image
           src={heroImage}
-          alt="Books and coffee on a wooden table"
+          alt="Hero Image"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-foreground/60" />
@@ -23,12 +23,14 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="max-w-2xl text-center"
         >
-          <div className="mb-4 flex items-center justify-center gap-2">
-            <BookOpen className="h-6 w-6 text-primary-foreground" />
-          </div>
-          <h1 className="font-display text-4xl font-bold leading-tight text-primary-foreground sm:text-5xl md:text-6xl">
-            Entre Livros
-          </h1>
+          <Image
+            src={logo}
+            alt="Entre Livros Logo"
+            className="object-cover mx-auto"
+            width={300}
+            height={300}
+
+          />
           <p className="mt-4 font-body text-lg text-primary-foreground/80">
             Recomendações e opiniões de livros para apaixonados por leitura. Descubra novas histórias e autores através das minhas leituras.
           </p>

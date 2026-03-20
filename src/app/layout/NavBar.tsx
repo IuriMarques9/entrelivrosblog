@@ -3,6 +3,7 @@
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Início", path: "/" },
@@ -17,11 +18,8 @@ const Navbar = () => {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
         
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <BookOpen className="h-5 w-5 text-primary transition-transform group-hover:scale-110" />
-          <span className="font-display text-lg font-bold text-foreground">
-            Entre Livros
-          </span>
+        <Link href="/" className="">
+          <Image src="/logo-letras.png" alt="Entre Livros" width={150} height={200} />
         </Link>
 
         {/* Links */}
