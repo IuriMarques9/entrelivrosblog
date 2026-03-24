@@ -52,9 +52,11 @@ const BookDetailModal = ({ book, open, onOpenChange }: BookDetailModalProps) => 
               <BookOpen className="h-4 w-4" />
               <span className="font-display text-sm font-semibold">Minha Avaliação</span>
             </div>
-            <p className="mt-2 font-body text-sm leading-relaxed text-foreground/90">
-              {book.fullReview}
-            </p>
+            <div className="mt-2 max-h-48 overflow-y-auto pr-2">
+              <p className="font-body text-sm leading-relaxed text-foreground/90">
+                {book.fullReview}
+              </p>
+            </div>
           </div>
         </div>
       </DialogContent>

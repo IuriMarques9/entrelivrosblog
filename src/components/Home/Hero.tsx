@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import heroImage from "../../../public/hero-books.jpg";
-import logo from "../../../public/logo-hero.png";
+import logo from "../../../public/logo-horizontal.svg";
 import Image from "next/image";
 
 const Hero = () => {
@@ -26,7 +26,7 @@ const Hero = () => {
           <Image
             src={logo}
             alt="Entre Livros Logo"
-            className="object-cover mx-auto"
+            className="mx-auto brightness-0 invert drop-shadow-2xl"
             width={300}
             height={300}
 
