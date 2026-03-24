@@ -1,8 +1,10 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { BookOpen, Heart, Mail } from "lucide-react";
 
-const Content = () => {
+const Content = ( { quantidadeDeLivros, categoriaFavorita }: { quantidadeDeLivros: number; categoriaFavorita: string } ) => {
+  
   return (
     <div className="min-h-screen bg-background">
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
@@ -37,18 +39,18 @@ const Content = () => {
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             <div className="rounded-lg border border-border bg-card p-5 text-center">
               <BookOpen className="mx-auto h-6 w-6 text-primary" />
-              <p className="mt-2 font-display text-2xl font-bold text-foreground">50+</p>
-              <p className="font-body text-sm text-muted-foreground">Livros lidos em 2025</p>
+              <p className="mt-2 font-display text-2xl font-bold text-foreground">{quantidadeDeLivros}</p>
+              <p className="font-body text-sm text-muted-foreground">Livros lidos</p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5 text-center">
               <Heart className="mx-auto h-6 w-6 fill-primary text-primary" />
-              <p className="mt-2 font-display text-2xl font-bold text-foreground">Ficção</p>
+              <p className="mt-2 font-display text-2xl font-bold text-foreground">{categoriaFavorita}</p>
               <p className="font-body text-sm text-muted-foreground">Género favorito</p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5 text-center">
               <Mail className="mx-auto h-6 w-6 text-primary" />
               <p className="mt-2 font-display text-2xl font-bold text-foreground">Contacto</p>
-              <p className="font-body text-sm text-muted-foreground">tatilopesfelicio@gmail.com</p>
+              <p className="font-body text-sm text-muted-foreground">tatilopesfelicio@hotmail.com</p>
             </div>
           </div>
         </motion.div>

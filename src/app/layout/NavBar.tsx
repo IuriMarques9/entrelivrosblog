@@ -18,7 +18,7 @@ const Navbar = () => {
         
         {/* Logo */}
           <Link href="/" className="">
-            <Image src="/logo.svg" className="object-cover" alt="Entre Livros" width={150} height={200} />
+            <Image src="/logo.svg" className="object-cover" alt="Entre Livros" width={125} height={200} />
           </Link>
 
         {/* Links */}
