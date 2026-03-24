@@ -50,7 +50,7 @@ const Content = ( { quantidadeDeLivros, categoriaFavorita }: { quantidadeDeLivro
             <div className="rounded-lg border border-border bg-card p-5 text-center">
               <Mail className="mx-auto h-6 w-6 text-primary" />
               <p className="mt-2 font-display text-2xl font-bold text-foreground">Contacto</p>
-              <p className="font-body text-sm text-muted-foreground">tatilopesfelicio@hotmail.com</p>
+              <p className="font-body text-xs md:text-sm text-muted-foreground">tatilopesfelicio@hotmail.com</p>
             </div>
           </div>
         </motion.div>
