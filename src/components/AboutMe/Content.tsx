@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { BookOpen, Heart, Mail } from "lucide-react";
-
+import sobreMimImg from "../../../public/sobre-mim.jpg";
+import Image from "next/image";
 const Content = ( { quantidadeDeLivros, categoriaFavorita }: { quantidadeDeLivros: number; categoriaFavorita: string } ) => {
   
   return (
@@ -16,24 +17,33 @@ const Content = ( { quantidadeDeLivros, categoriaFavorita }: { quantidadeDeLivro
           <h1 className="font-display text-4xl font-bold text-foreground">
             Quem sou eu?
           </h1>
-          <div className="mt-2 h-1 w-16 rounded-full bg-primary" />
 
-          <div className="mt-8 space-y-4 font-body text-base leading-relaxed text-foreground/85">
-            <p>
-              Olá! Bem-vindo(a) ao <span className="font-semibold text-primary">Entre Livros</span> — o espaço na internet onde partilho as minhas leituras, reflexões e recomendações de livros.
-            </p>
-            <p>
-              Chamo-me Tatiana e, além de jornalista, uma leitora apaixonada que acredita que um bom livro pode mudar a nossa perspetiva sobre o mundo. 
-            </p>
-            <p>
-              O meu objetivo é simples: ajudar-te a encontrar a tua próxima leitura favorita.
-            </p>
-            <p>
-              Cada avaliação é escrita com honestidade, porque acredito que os leitores merecem opiniões genuínas.
-            </p>
-            <p>
-              Espero que gostes tanto de estar “Entre Livros” como eu!
-            </p>
+          <div className="mt-2 h-1 w-16 rounded-full bg-primary" />
+          <div className="mt-8 flex flex-col items-center sm:flex-row gap-6">
+            <Image
+              src={sobreMimImg}
+              alt="Foto pessoal com livros"
+              className="w-60 h-48 rounded-2xl object-cover shadow-lg ring-2 ring-primary/20 flex-shrink-0"
+              width={200}
+              height={200}
+            />
+            <div className="space-y-6 font-body text-base leading-relaxed text-foreground/85">
+              <p>
+                Olá! Bem-vindo(a) ao <span className="font-semibold text-primary">Entre Livros</span> — o espaço na internet onde partilho as minhas leituras, reflexões e recomendações de livros.
+              </p>
+              <p>
+                Chamo-me Tatiana e, além de jornalista, uma leitora apaixonada que acredita que um bom livro pode mudar a nossa perspetiva sobre o mundo. 
+              </p>
+              <p>
+                O meu objetivo é simples: ajudar-te a encontrar a tua próxima leitura favorita.
+              </p>
+              <p>
+                Cada avaliação é escrita com honestidade, porque acredito que os leitores merecem opiniões genuínas.
+              </p>
+              <p>
+                Espero que gostes tanto de estar “Entre Livros” como eu!
+              </p>
+            </div>
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
