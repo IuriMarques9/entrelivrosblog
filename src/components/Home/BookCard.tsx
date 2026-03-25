@@ -17,7 +17,7 @@ const BookCard = ({ book, index, onSelect }: BookCardProps) => {
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: .5, delay: index * 0.1 }}
       className="group cursor-pointer rounded-lg bg-card p-5 shadow-sm transition-shadow hover:shadow-md border border-border/50"
       onClick={() => onSelect(book)}
     >
@@ -60,7 +60,7 @@ const BookCard = ({ book, index, onSelect }: BookCardProps) => {
 
       <div className="mt-4">
         <span className="font-display text-xs font-semibold uppercase tracking-wide text-primary">Sinopse</span>
-        <p className="mt-1 font-body text-sm leading-relaxed text-muted-foreground line-clamp-3">
+        <p className="mt-1 font-body text-sm leading-relaxed text-muted-foreground line-clamp-3 group-hover:line-clamp-none transition duration-750">
           {book.sinopse}
         </p>
       </div>
