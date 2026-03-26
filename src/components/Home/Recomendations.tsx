@@ -16,7 +16,7 @@ const Recomendations = ({ livros, categories }: { livros: BookReview[]; categori
     const filtered = activeGenre === "Todos" ? livros : livros.filter((b) => b.genre === activeGenre);
 
     return (
-        <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+        <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6 ">
             
             {/* Genre filter */}
             <div className="mb-8 flex flex-wrap items-center gap-2">

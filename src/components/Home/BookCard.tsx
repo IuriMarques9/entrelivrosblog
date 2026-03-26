@@ -23,7 +23,7 @@ const BookCard = ({ book, index, onSelect, isExpanded, onToggle }: BookCardProps
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className={`group cursor-pointer rounded-lg bg-card p-5 shadow-sm border border-border/50 absolute top-0 left-0 w-full h-fit ${isExpanded ? "z-40 shadow-xl border-primary/30" : "z-30"} transition-all duration-300 hover:shadow-xl`}
+        className={`group cursor-pointer rounded-lg bg-card p-5 shadow-sm border border-border/50 absolute top-0 left-0 w-full h-fit ${isExpanded ? "z-20 shadow-xl border-primary/30 " : "z-10 hover:z-20"}  transition-all duration-300 hover:shadow-xl`}
         onClick={() => onSelect(book)}
       >
         <div className="flex gap-5">
