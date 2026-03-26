@@ -4,17 +4,17 @@ import { BookOpen, Eye, EyeClosed, Heart } from "lucide-react";
 import StarRating from "../../app/layout/StarRating";
 import type { BookReview } from "@/interface/book";
 import Image from "next/image";
-import { useState } from "react";
 
 interface BookCardProps {
   book: BookReview;
   index: number;
   onSelect: (book: BookReview) => void;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
-const BookCard = ({ book, index, onSelect }: BookCardProps) => {
+const BookCard = ({ book, index, onSelect, isExpanded, onToggle }: BookCardProps) => {
 
-  const [expanded, setExpanded] = useState(false);
   
   return (
     /* 1. O Wrapper mantém o espaço na grid (h-full ou altura fixa se necessário) */
@@ -23,7 +23,7 @@ const BookCard = ({ book, index, onSelect }: BookCardProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className={`group cursor-pointer rounded-lg bg-card p-5 shadow-sm border border-border/50 absolute top-0 left-0 w-full h-fit ${expanded ? "z-40" : "z-30"} transition-all duration-300 hover:shadow-xl hover:border-primary/30`}
+        className={`group cursor-pointer rounded-lg bg-card p-5 shadow-sm border border-border/50 absolute top-0 left-0 w-full h-fit ${isExpanded ? "z-40 shadow-xl border-primary/30" : "z-30"} transition-all duration-300 hover:shadow-xl`}
         onClick={() => onSelect(book)}
       >
         <div className="flex gap-5">
@@ -67,23 +67,23 @@ const BookCard = ({ book, index, onSelect }: BookCardProps) => {
           <div className="flex justify-between items-center">
             <span className="font-display text-xs font-semibold uppercase tracking-wide text-primary">Sinopse</span>
             
-            <button
+             <button
               onClick={(e) => {
                 e.stopPropagation();
-                setExpanded(!expanded);
+                onToggle(); // Chama a função que fecha os outros e abre este
               }}
-              className=" sm:hidden flex items-center gap-1 rounded-full bg-secondary px-2.5 py-1 font-body text-xs font-medium text-primary hover:bg-accent transition-colors"
+              className="sm:hidden flex items-center gap-1 rounded-full bg-secondary px-2.5 py-1 font-body text-xs font-medium text-primary hover:bg-accent transition-colors"
             >
-              {expanded ? <EyeClosed className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+              {isExpanded ? <EyeClosed className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
             </button>
           </div>
           
-          <p className={`mt-1 font-body text-sm leading-relaxed text-muted-foreground transition-all duration-300 ${expanded ? "" : "line-clamp-2"} group-hover:line-clamp-none`}>
+          <p className={`mt-1 font-body text-sm leading-relaxed text-muted-foreground transition-all duration-300 ${isExpanded ? "" : "line-clamp-2"} group-hover:line-clamp-none`}>
             {book.sinopse}
           </p>
         </div>
 
-        <div className="mt-3 flex items-center gap-1.5 font-body text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
+        <div className={`mt-3 flex items-center gap-1.5 font-body text-xs font-medium text-primary transition-opacity ${isExpanded ? 'group-hover:opacity-100' : "opacity-0"}`}>
           <BookOpen className="h-3.5 w-3.5" />
           Lê a avaliação completa
         </div>

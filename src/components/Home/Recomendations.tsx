@@ -11,6 +11,8 @@ const Recomendations = ({ livros, categories }: { livros: BookReview[]; categori
     const [selectedBook, setSelectedBook] = useState<BookReview | null>(null);
     const [activeGenre, setActiveGenre] = useState("Todos");
 
+    const [expandedId, setExpandedId] = useState<number | null>(null);
+
     const filtered = activeGenre === "Todos" ? livros : livros.filter((b) => b.genre === activeGenre);
 
     return (
@@ -55,6 +57,8 @@ const Recomendations = ({ livros, categories }: { livros: BookReview[]; categori
                 book={book}
                 index={i}
                 onSelect={setSelectedBook}
+                isExpanded={expandedId === book.id} 
+                onToggle={() => setExpandedId(expandedId === book.id ? null : book.id)} 
                 />
             ))}
             </div>
