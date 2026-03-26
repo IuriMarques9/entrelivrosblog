@@ -16,7 +16,7 @@ const BookDetailModal = ({ book, open, onOpenChange }: BookDetailModalProps) => 
   
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl bg-card border-border">
+      <DialogContent className="max-w-2xl w-[90vw] bg-card border-border">
         <DialogHeader>
           <DialogTitle className="font-display text-2xl font-bold text-foreground">
             {book.title}

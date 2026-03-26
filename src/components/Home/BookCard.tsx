@@ -1,9 +1,10 @@
 "use client"
 import { motion } from "framer-motion";
-import { BookOpen, Heart } from "lucide-react";
+import { BookOpen, Eye, EyeClosed, Heart } from "lucide-react";
 import StarRating from "../../app/layout/StarRating";
 import type { BookReview } from "@/interface/book";
 import Image from "next/image";
+import { useState } from "react";
 
 interface BookCardProps {
   book: BookReview;
@@ -12,64 +13,82 @@ interface BookCardProps {
 }
 
 const BookCard = ({ book, index, onSelect }: BookCardProps) => {
+
+  const [expanded, setExpanded] = useState(false);
   
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: .5, delay: index * 0.1 }}
-      className="group cursor-pointer rounded-lg bg-card p-5 shadow-sm transition-shadow hover:shadow-md border border-border/50"
-      onClick={() => onSelect(book)}
-    >
-      <div className="flex gap-5">
-        <div className="w-24 shrink-0 overflow-hidden rounded-md">
-        
-          <Image
-            src={`${book.bookCoverUrl || ""}`}
-            width={160}
-            height={240}
-            alt={`Capa de ${book.title}`}
-            className="h-36 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        </div>
-        <div className="flex flex-col justify-between min-w-0">
-          <div>
-            <div className="mb-1 flex items-center gap-2">
-              <span className="rounded-full bg-secondary px-2.5 py-0.5 font-body text-xs font-medium text-secondary-foreground">
-                {book.genre}
-              </span>
-              {book.recommendation && (
-                <Heart className="h-3.5 w-3.5 fill-primary text-primary" />
-              )}
+    /* 1. O Wrapper mantém o espaço na grid (h-full ou altura fixa se necessário) */
+    <div className="relative min-h-[300px] w-full"> 
+      <motion.article
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className={`group cursor-pointer rounded-lg bg-card p-5 shadow-sm border border-border/50 absolute top-0 left-0 w-full h-fit ${expanded ? "z-50" : "z-40"} transition-all duration-300 hover:shadow-xl hover:border-primary/30`}
+        onClick={() => onSelect(book)}
+      >
+        <div className="flex gap-5">
+          <div className="w-24 shrink-0 overflow-hidden rounded-md">
+            <Image
+              src={`${book.bookCoverUrl || ""}`}
+              width={160}
+              height={240}
+              alt={`Capa de ${book.title}`}
+              className="h-36 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+          <div className="flex flex-col justify-between min-w-0">
+            <div>
+              <div className="mb-1 flex items-center gap-2">
+                <span className="rounded-full bg-secondary px-2.5 py-0.5 font-body text-xs font-medium text-secondary-foreground">
+                  {book.genre}
+                </span>
+                {book.recommendation && (
+                  <Heart className="h-3.5 w-3.5 fill-primary text-primary" />
+                )}
+              </div>
+              <h3 className="font-display text-lg font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
+                {book.title}
+              </h3>
+              <p className="mt-0.5 font-body text-sm text-muted-foreground">
+                de {book.author}
+              </p>
             </div>
-            <h3 className="font-display text-lg font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
-              {book.title}
-            </h3>
-            <p className="mt-0.5 font-body text-sm text-muted-foreground">
-              de {book.author}
-            </p>
-          </div>
-          <div className="mt-3 flex items-center justify-between">
-            <StarRating rating={book.rating} />
-            <span className="font-body text-xs text-muted-foreground">
-              {book?.reviewDate ? new Date(book.reviewDate).toLocaleDateString('pt-PT') : new Date().toLocaleDateString('pt-PT')}
-            </span>
+            
+            <div className="mt-3 flex items-center justify-between">
+              <StarRating rating={book.rating} />
+              <span className="font-body text-xs text-muted-foreground">
+                {book?.reviewDate ? new Date(book.reviewDate).toLocaleDateString('pt-PT') : new Date().toLocaleDateString('pt-PT')}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-4">
-        <span className="font-display text-xs font-semibold uppercase tracking-wide text-primary">Sinopse</span>
-        <p className="mt-1 font-body text-sm leading-relaxed text-muted-foreground line-clamp-3 group-hover:line-clamp-none transition duration-750">
-          {book.sinopse}
-        </p>
-      </div>
+        <div className="mt-4">
+          <div className="flex justify-between items-center">
+            <span className="font-display text-xs font-semibold uppercase tracking-wide text-primary">Sinopse</span>
+            
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setExpanded(!expanded);
+              }}
+              className=" sm:hidden flex items-center gap-1 rounded-full bg-secondary px-2.5 py-1 font-body text-xs font-medium text-primary hover:bg-accent transition-colors"
+            >
+              {expanded ? <EyeClosed className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+            </button>
+          </div>
+          
+          <p className={`mt-1 font-body text-sm leading-relaxed text-muted-foreground transition-all duration-300 ${expanded ? "" : "line-clamp-2"} group-hover:line-clamp-none`}>
+            {book.sinopse}
+          </p>
+        </div>
 
-      <div className="mt-3 flex items-center gap-1.5 font-body text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-        <BookOpen className="h-3.5 w-3.5" />
-        Lê a avaliação completa
-      </div>
-    </motion.article>
+        <div className="mt-3 flex items-center gap-1.5 font-body text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
+          <BookOpen className="h-3.5 w-3.5" />
+          Lê a avaliação completa
+        </div>
+      </motion.article>
+    </div>
   );
 };
 
