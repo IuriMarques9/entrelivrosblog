@@ -58,6 +58,8 @@ const genres = [
   "Clássicos",
   "Desenvolvimento Pessoal",
   "Policial e Thriller",
+  "Não Ficção",
+  "BD/Novela Gráfica",
 ];
 
 const BookFormModal = ({ open, onOpenChange, book, onSubmit }: BookFormModalProps) => {
