@@ -33,7 +33,8 @@ export const useBookComments = (bookId: number) => {
       }
 
       if (result.data) {
-        setComments((prev) => [result.data, ...prev]);
+        const newComment = result.data;
+        setComments((prev) => [newComment, ...prev]);
       }
       return true;
     } catch (err) {
