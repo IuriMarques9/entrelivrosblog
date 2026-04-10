@@ -23,12 +23,12 @@ export const metadata: Metadata = {
     template: "%s | Entre Livros",
   },
   description:
-    "Blog de resenhas e recomendacoes literarias por Tatiana Felicio. Descobre novas leituras, opinioes honestas e o amor pelos livros.",
+    "Site de recomendacoes literarias de Tatiana Felicio. Descobre novas leituras, opinioes honestas e o amor pelos livros.",
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Entre Livros - Tatiana Felicio",
     description:
-      "Blog de resenhas e recomendacoes literarias por Tatiana Felicio.",
+      "Site de recomendacoes literarias de Tatiana Felicio.",
     url: siteUrl,
     siteName: "Entre Livros",
     locale: "pt_PT",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Entre Livros - Tatiana Felicio",
     description:
-      "Blog de resenhas e recomendacoes literarias por Tatiana Felicio.",
+      "Site de recomendacoes literarias de Tatiana Felicio.",
   },
 };
 
