@@ -73,7 +73,7 @@ const Dashboard = ( { tabela, unreadComments }: { tabela: BookReview[], unreadCo
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row gap-5 justify-between">
             <div>
               <h1 className="font-display text-3xl font-bold text-foreground">
                 Painel de administraçao
@@ -83,7 +83,7 @@ const Dashboard = ( { tabela, unreadComments }: { tabela: BookReview[], unreadCo
               </p>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <NotificationCenter initialUnreadComments={unreadComments} />
               
               <Button onClick={handleAdd} className="gap-2">

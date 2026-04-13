@@ -80,7 +80,7 @@ export default function NotificationCenter({ initialUnreadComments }: Notificati
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 rounded-md border bg-popover shadow-lg z-50">
+        <div className="absolute md:right-0 mt-2 w-80 rounded-md border bg-popover shadow-lg z-50">
           <div className="p-4 border-b">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold">Notificações</h3>
