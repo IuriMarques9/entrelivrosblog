@@ -1,5 +1,5 @@
 import { BookComment, CreateCommentInput } from "@/interface/book";
-import { getBookComments, createBookComment } from "@/app/commentActions";
+import { getBookComments, createBookComment, updateBookComment, deleteBookCommentByUser } from "@/app/commentActions";
 import { useEffect, useState } from "react";
 
 export const useBookComments = (bookId: number) => {
@@ -26,7 +26,7 @@ export const useBookComments = (bookId: number) => {
     setError(null);
     try {
       const result = await createBookComment(input);
-      
+
       if (!result.success) {
         setError(result.error || "Failed to add comment");
         return false;
@@ -44,9 +44,53 @@ export const useBookComments = (bookId: number) => {
     }
   };
 
+  const updateComment = async (commentId: string, input: { user_identifier: string; comment_text: string }) => {
+    setError(null);
+    try {
+      const result = await updateBookComment(commentId, input);
+
+      if (!result.success) {
+        setError(result.error || "Failed to update comment");
+        return false;
+      }
+
+      if (result.data) {
+        // Update the comment in the state
+        setComments(prev => prev.map(comment =>
+          comment.id === commentId ? result.data! : comment
+        ));
+      }
+      return true;
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Error updating comment";
+      setError(message);
+      return false;
+    }
+  };
+
+  const deleteComment = async (commentId: string, user_identifier: string) => {
+    setError(null);
+    try {
+      const result = await deleteBookCommentByUser(commentId, user_identifier);
+
+      if (!result.success) {
+        setError(result.error || "Failed to delete comment");
+        return false;
+      }
+
+      // Remove the comment from the state
+      setComments(prev => prev.filter(comment => comment.id !== commentId));
+      return true;
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Error deleting comment";
+      setError(message);
+      return false;
+    }
+  };
+
   useEffect(() => {
     fetchComments();
   }, [bookId, refreshKey]);
 
-  return { comments, loading, error, addComment, refetch: fetchComments, setRefreshKey };
+  return { comments, loading, error, addComment, updateComment, deleteComment, refetch: fetchComments, setRefreshKey };
 };
