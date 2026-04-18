@@ -50,7 +50,7 @@ const BookCard = ({ book, index, onSelect, isExpanded, onToggle }: BookCardProps
               </div>
             )}
           </div>
-          <div className="flex flex-col justify-between min-w-0">
+          <div className="flex flex-col justify-between min-w-0 w-full">
             <div>
               <div className="mb-1 flex items-center gap-2">
                 <span className="rounded-full bg-secondary px-2.5 py-0.5 font-body text-xs font-medium text-secondary-foreground">
